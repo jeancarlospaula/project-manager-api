@@ -14,7 +14,7 @@ class CategoryController {
 
     static async findUserCategories(req, res){
         try {            
-            const userId = req.body.userId
+            let userId = req.headers['x-access-token']
             const categories = await Category.find({userId}).select('-__v')
     
             return res.status(200).json(categories)
